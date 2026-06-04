@@ -42,7 +42,7 @@ def generate_launch_description():
             ),
             DeclareLaunchArgument(
                 "camera_backend",
-                default_value="v4l2",
+                default_value="libcamera",
                 description="Camera driver backend: 'v4l2' or 'libcamera'.",
             ),
             DeclareLaunchArgument("video_device", default_value="/dev/video0"),

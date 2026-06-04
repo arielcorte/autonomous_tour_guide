@@ -131,16 +131,16 @@ Learning point: a 2D LiDAR gives range measurements around the robot. SLAM and o
 
 ## 5. Camera
 
-Start the default V4L2 camera stream:
+Start the default Raspberry Pi libcamera stream:
 
 ```bash
 ros2 launch autonomous_tour_guide camera_stream.launch.py
 ```
 
-For a libcamera-backed Raspberry Pi camera, install `camera_ros` and run:
+For a USB camera or a camera exposed as a working V4L2 device:
 
 ```bash
-ros2 launch autonomous_tour_guide camera_stream.launch.py camera_backend:=libcamera
+ros2 launch autonomous_tour_guide camera_stream.launch.py camera_backend:=v4l2 video_device:=/dev/video0
 ```
 
 The first useful check is simply that frames arrive:

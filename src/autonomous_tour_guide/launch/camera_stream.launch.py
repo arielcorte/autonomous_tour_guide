@@ -47,8 +47,9 @@ def camera_nodes(context, *args, **kwargs):
         ]
 
     if backend == "libcamera":
+        libcamera_selector = launch_arg(context, "libcamera_selector")
         parameters = {
-            "camera": launch_arg(context, "libcamera_selector"),
+            "camera": int(libcamera_selector) if libcamera_selector.isdecimal() else libcamera_selector,
             "role": "viewfinder",
             "width": image_width,
             "height": image_height,
@@ -83,7 +84,7 @@ def generate_launch_description():
         [
             DeclareLaunchArgument(
                 "camera_backend",
-                default_value="v4l2",
+                default_value="libcamera",
                 description="Camera driver backend: 'v4l2' for v4l2_camera or 'libcamera' for camera_ros.",
             ),
             DeclareLaunchArgument(

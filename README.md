@@ -51,7 +51,7 @@ source install/setup.bash
 The default camera and teleop launch files use existing ROS 2 packages:
 
 ```bash
-sudo apt install ros-humble-v4l2-camera ros-humble-teleop-twist-keyboard
+sudo apt install ros-humble-camera-ros ros-humble-v4l2-camera ros-humble-teleop-twist-keyboard
 ```
 
 For compressed image topics, also install:
@@ -78,7 +78,7 @@ This sends the robot through the configured waypoints in `src/autonomous_tour_gu
 
 ## Camera Streaming
 
-For a USB camera or a Raspberry Pi camera exposed as a V4L2 device:
+For a Raspberry Pi camera using the normal libcamera stack:
 
 ```bash
 ros2 launch autonomous_tour_guide camera_stream.launch.py
@@ -93,10 +93,10 @@ ros2 launch autonomous_tour_guide camera_stream.launch.py \
 
 The launch publishes `/camera/image_raw` and `/camera/camera_info` by default.
 
-For newer Raspberry Pi camera setups using libcamera, install `camera_ros` and run:
+For a USB camera or a camera exposed as a working V4L2 device:
 
 ```bash
-ros2 launch autonomous_tour_guide camera_stream.launch.py camera_backend:=libcamera
+ros2 launch autonomous_tour_guide camera_stream.launch.py camera_backend:=v4l2 video_device:=/dev/video0
 ```
 
 ## Manual Robot Control
