@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 import rclpy
 from geometry_msgs.msg import Twist
+from rclpy.exceptions import RCLError
 from rclpy.node import Node
 from rclpy.time import Time
 
@@ -88,7 +89,13 @@ class ManualVelocityFilter(Node):
         return age.nanoseconds > int(self.command_timeout_sec * 1_000_000_000)
 
     def stop_robot(self) -> None:
-        self.publisher.publish(zero_twist())
+        if not rclpy.ok():
+            return
+
+        try:
+            self.publisher.publish(zero_twist())
+        except RCLError:
+            self.get_logger().debug("ROS context closed before stop command could be published")
 
 
 def main() -> None:
