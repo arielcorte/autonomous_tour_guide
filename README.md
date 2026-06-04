@@ -94,6 +94,8 @@ ros2 daemon stop
 ros2 daemon start
 ```
 
+The checked-in profile currently whitelists `192.168.1.3` for the workstation and `192.168.1.31` for the Raspberry Pi. Update `src/autonomous_tour_guide/config/fastdds-wlan.xml` if DHCP gives either machine a different Wi-Fi address.
+
 Useful overrides:
 
 ```bash
