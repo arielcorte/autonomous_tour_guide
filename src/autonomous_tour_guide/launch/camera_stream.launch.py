@@ -104,8 +104,8 @@ def generate_launch_description():
             ),
             DeclareLaunchArgument(
                 "libcamera_format",
-                default_value="",
-                description="Optional camera_ros pixel format. Leave empty to let libcamera choose.",
+                default_value="RGB888",
+                description="camera_ros pixel format. RGB888 publishes a ROS viewer-compatible bgr8 image.",
             ),
             DeclareLaunchArgument(
                 "output_encoding",

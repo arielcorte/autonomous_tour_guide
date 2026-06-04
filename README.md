@@ -84,6 +84,8 @@ For a Raspberry Pi camera using the normal libcamera stack:
 ros2 launch autonomous_tour_guide camera_stream.launch.py
 ```
 
+The launch requests `RGB888` from libcamera so ROS viewers receive a standard `bgr8` image instead of the Pi camera stack's default `nv21` stream.
+
 Useful overrides:
 
 ```bash

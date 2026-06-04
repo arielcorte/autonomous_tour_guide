@@ -137,6 +137,8 @@ Start the default Raspberry Pi libcamera stream:
 ros2 launch autonomous_tour_guide camera_stream.launch.py
 ```
 
+The default libcamera pixel format is `RGB888`, which avoids `nv21` images that `rqt_image_view` cannot display.
+
 For a USB camera or a camera exposed as a working V4L2 device:
 
 ```bash
