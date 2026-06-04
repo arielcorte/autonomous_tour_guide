@@ -86,6 +86,14 @@ ros2 launch autonomous_tour_guide camera_stream.launch.py
 
 The launch requests `RGB888` from libcamera so ROS viewers receive a standard `bgr8` image instead of the Pi camera stack's default `nv21` stream.
 
+When viewing the Pi stream from another machine or from the distrobox, source the Fast DDS Wi-Fi profile first. This avoids multi-interface DDS routing issues on hosts with Wi-Fi, USB Ethernet, Docker bridges, and Tailscale active at the same time:
+
+```bash
+export FASTRTPS_DEFAULT_PROFILES_FILE=$PWD/install/autonomous_tour_guide/share/autonomous_tour_guide/config/fastdds-wlan.xml
+ros2 daemon stop
+ros2 daemon start
+```
+
 Useful overrides:
 
 ```bash
